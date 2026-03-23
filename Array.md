@@ -103,6 +103,18 @@ Reverse the elements of an array **in-place**.
 ## 💻 Code (JavaScript)
 
 ```javascript
+
+//---using for loop-----
+function reverseArray(arr) {
+  for (let i = 0; i < arr.length / 2; i++) {
+    let temp = arr[i];
+    arr[i] = arr[arr.length - 1 - i];
+    arr[arr.length - 1 - i] = temp;
+  }
+
+  return arr;
+}
+//-------------------------
 function reverseArray(arr) {
   let left = 0;
   let right = arr.length - 1;
@@ -112,6 +124,13 @@ function reverseArray(arr) {
     arr[left] = arr[right];
     arr[right] = temp;
 
+    left++;
+    right--;
+  }
+
+  //-----without temp ------
+    while (left < right) {
+    [arr[left], arr[right]] = [arr[right], arr[left]];
     left++;
     right--;
   }
@@ -143,6 +162,43 @@ console.log(reverseArray([1,2,3,4])); // [4,3,2,1]
 ## 🧪 Practice Task
 
 👉 Reverse an array **without modifying original array**
+
+## 💻 Code (JavaScript)
+
+```javascript
+//-----using inbuilt method ---------
+ //using  Spread Opeartpr
+let arr = [1,2,3,4];
+
+let reversed = [...arr].reverse();
+
+console.log(reversed); // [4,3,2,1]
+console.log(arr); // [1,2,3,4]
+
+//Using slice()
+ let arr = [1,2,3,4];
+
+let reversed = arr.slice().reverse();
+
+console.log(reversed); // [4,3,2,1]
+console.log(arr); // [1,2,3,4]
+
+//----------------------------------
+function reverseArray(arr) {
+  let result = [];
+
+  for (let i = arr.length - 1; i >= 0; i--) {
+    result.push(arr[i]);
+  }
+
+  return result;
+}
+
+let original = [1, 2, 3, 4];
+let reversed = reverseArray(original);
+
+console.log(reversed); // [4,3,2,1]
+console.log(original); // [1,2,3,4] ✅ unchanged```
 
 ---
 
