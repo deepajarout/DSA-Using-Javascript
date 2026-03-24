@@ -204,10 +204,9 @@ console.log(original); // [1,2,3,4] ✅ unchanged```
 
 💡 This is a very important pattern for interviews 🚀
 
+---
 
 # 📘 DAY 2 — Array Practice (Basics + Logic Building)
-
----
 
 ## 🔥 Problem 1: Find Element
 
