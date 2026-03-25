@@ -390,33 +390,179 @@ console.log(singleNumber([4,1,2,1,2])); // 4
 
 ---
 
-### ⚡ Complexity:
 
-* Time: **O(n)** ✅
-* Space: **O(1)** ✅
+## 🚀 Next (DAY 3 )
 
 ---
 
-### ❗ Key Insight:
+## 🔥 Problem 1: Two Sum (Brute Force)
 
-* XOR helps eliminate duplicates efficiently
-* No extra space needed (better than hashmap)
+### 💡 Approach:
+
+* Check every pair using nested loops
+* Return indices when sum matches target
+
+### 💻 Code:
+
+```js
+function twoSum(arr, target) {
+  for (let i = 0; i < arr.length; i++) {
+    for (let j = i + 1; j < arr.length; j++) {
+      if (arr[i] + arr[j] === target) {
+        return [i, j];
+      }
+    }
+  }
+}
+```
+
+### ⏱ Time Complexity:
+
+* O(n²)
+
+### 📦 Space Complexity:
+
+* O(1)
 
 ---
 
-## 🧠 Key Learnings (DAY 2)
+## 🚀 Problem 1: Two Sum (Optimized - Hash Map)
 
-* Array traversal using loops
-* Conditional logic inside loops
-* Optimizing without sorting
-* Using **bit manipulation (XOR)** for advanced problems
+### 💡 Approach:
+
+* Store visited elements in a map
+* Check if complement exists
+
+### 💻 Code:
+
+```js
+function twoSum(arr, target) {
+  let map = {};
+
+  for (let i = 0; i < arr.length; i++) {
+    let complement = target - arr[i];
+
+    if (map[complement] !== undefined) {
+      return [map[complement], i];
+    }
+
+    map[arr[i]] = i;
+  }
+}
+```
+
+### ⏱ Time Complexity:
+
+* O(n)
+
+### 📦 Space Complexity:
+
+* O(n)
 
 ---
 
-## 🚀 Next (DAY 3 Preview)
+## 🔥 Problem 2: Move Zeros
 
-* Reverse Array (advanced)
-* Move zeros to end
-* Two pointer + sliding window ⭐⭐⭐
+### 💡 Approach:
+
+* Use two pointers
+* Swap non-zero elements forward
+
+### 💻 Code:
+
+```js
+function moveZeros(arr) {
+  let j = 0;
+
+  for (let i = 0; i < arr.length; i++) {
+    if (arr[i] !== 0) {
+      if (i !== j) {
+        [arr[i], arr[j]] = [arr[j], arr[i]];
+      }
+      j++;
+    }
+  }
+
+  return arr;
+}
+```
+
+### ⏱ Time Complexity:
+
+* O(n)
+
+### 📦 Space Complexity:
+
+* O(1)
+
+---
+
+## 🔥 Problem 3: Remove Duplicates (Using Object)
+
+### 💡 Approach:
+
+* Use object as hashmap
+* Store visited values
+
+### 💻 Code:
+
+```js
+function removeDuplicates(arr) {
+  let map = {};
+  let result = [];
+
+  for (let i = 0; i < arr.length; i++) {
+    if (!map[arr[i]]) {
+      map[arr[i]] = true;
+      result.push(arr[i]);
+    }
+  }
+
+  return result;
+}
+```
+
+### ⏱ Time Complexity:
+
+* O(n)
+
+### 📦 Space Complexity:
+
+* O(n)
+
+---
+
+## 🚀 Problem 3: Remove Duplicates (Using Set)
+
+### 💡 Approach:
+
+* Use Set to track unique values
+
+### 💻 Code:
+
+```js
+function removeDuplicates(arr) {
+  let seen = new Set();
+  let result = [];
+
+  for (let num of arr) {
+    if (!seen.has(num)) {
+      seen.add(num);
+      result.push(num);
+    }
+  }
+
+  return result;
+}
+```
+
+### ⏱ Time Complexity:
+
+* O(n)
+
+### 📦 Space Complexity:
+
+* O(n)
+
 
 ---
