@@ -274,6 +274,57 @@ countOnes([]) → 0
 👉 It’s about **controlling direction after finding**
 
 ---
+# 📘 Binary Search — Last Occurrence
+
+---
+
+## 📌 Problem
+
+Find the **last occurrence** of a given `target` in a **sorted array**.
+
+---
+
+## 🧠 Approach
+
+- Use **Binary Search**
+- Initialize:
+  - `left = 0`
+  - `right = n - 1`
+  - `result = -1`
+- While `left <= right`:
+  - Find `mid`
+  - If `arr[mid] === target`:
+    - Store index in `result`
+    - Move **right** (`left = mid + 1`) to find later occurrence
+  - If `arr[mid] < target`:
+    - Move right
+  - Else:
+    - Move left
+
+---
+
+## 💻 Code (JavaScript)
+
+```js
+function lastOccurrence(arr, target) {
+  let left = 0, right = arr.length - 1;
+  let result = -1;
+
+  while (left <= right) {
+    let mid = left + Math.floor((right - left) / 2);
+
+    if (arr[mid] === target) {
+      result = mid;
+      left = mid + 1; // move right
+    } else if (arr[mid] < target) {
+      left = mid + 1;
+    } else {
+      right = mid - 1;
+    }
+  }
+
+  return result;
+}
 
 
 
