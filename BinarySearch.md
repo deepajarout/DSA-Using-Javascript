@@ -325,6 +325,54 @@ function lastOccurrence(arr, target) {
 
   return result;
 }
+```
 
+# 📘 Binary Search — Square Root (Integer)
 
+---
+
+## 📌 Problem
+
+Find the **square root** of a number `n` using Binary Search.
+
+👉 Return the **integer part** (ignore decimals).
+
+---
+
+## 🧠 Approach
+
+- Use **Binary Search**
+- Search range:
+  - `left = 0`
+  - `right = n`
+- While `left <= right`:
+  - Find `mid`
+  - If `mid * mid <= n`:
+    - Store `mid` as answer
+    - Move **right** (`left = mid + 1`) to find closer value
+  - Else:
+    - Move **left** (`right = mid - 1`)
+
+---
+
+## 💻 Code (JavaScript)
+
+```js
+function sqrt(n) {
+  let left = 0, right = n;
+  let ans = 0;
+
+  while (left <= right) {
+    let mid = Math.floor((left + right) / 2);
+
+    if (mid * mid <= n) {
+      ans = mid;
+      left = mid + 1;
+    } else {
+      right = mid - 1;
+    }
+  }
+
+  return ans;
+}
 
