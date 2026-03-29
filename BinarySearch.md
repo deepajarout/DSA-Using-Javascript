@@ -375,4 +375,53 @@ function sqrt(n) {
 
   return ans;
 }
+```
+
+# 📘 Binary Search — Find Peak Element
+
+---
+
+## 📌 Problem
+
+Find a **peak element** in an array.
+
+👉 A peak element is an element that is **greater than its neighbors**.
+
+- You can return **any one peak**
+- Array is not necessarily sorted
+
+---
+
+## 🧠 Approach
+
+- Use **Binary Search**
+- Compare `arr[mid]` with `arr[mid + 1]`:
+  - If `arr[mid] < arr[mid + 1]`:
+    - Peak lies on the **right side**
+    - Move → `left = mid + 1`
+  - Else:
+    - Peak lies on the **left side (including mid)**
+    - Move → `right = mid`
+- Loop until `left === right`
+
+---
+
+## 💻 Code (JavaScript)
+
+```js
+function findPeak(arr) {
+  let left = 0, right = arr.length - 1;
+
+  while (left < right) {
+    let mid = Math.floor((left + right) / 2);
+
+    if (arr[mid] < arr[mid + 1]) {
+      left = mid + 1;
+    } else {
+      right = mid;
+    }
+  }
+
+  return arr[left];
+}
 
