@@ -27,9 +27,9 @@ This document describes the system design for a scalable ride-sharing platform s
 
 ---
 
-# 🏗️ 3. High-Level Architecture
+# 🏗️ High-Level Architecture 
 
-
+## 📌 Overview The Ride Sharing system follows a **distributed microservices architecture** designed for: - High scalability - Low latency - Real-time communication - Fault tolerance Each component is independently deployable and communicates via **REST APIs** and **event-driven messaging (Kafka)**. ---
 
 ---
 
