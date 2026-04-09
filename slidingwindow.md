@@ -105,6 +105,39 @@ Complexity
 Time: O(n * k)
 Space: O(1)
 ---
+
+# 📘 Maximum Sum Subarray of Size K (Sliding Window)
+
+---
+
+## 📌 Function
+
+```javascript
+function maxSubArray(arr, k) {
+  if (arr.length < k) return null;
+
+  let windowSum = 0;
+  let maxSum = 0;
+
+  // Step 1: First window
+  for (let i = 0; i < k; i++) {
+    windowSum += arr[i];
+  }
+
+  maxSum = windowSum;
+
+  // Step 2: Slide window
+  for (let i = k; i < arr.length; i++) {
+    windowSum += arr[i];
+    windowSum -= arr[i - k];
+
+    maxSum = Math.max(maxSum, windowSum);
+  }
+
+  return maxSum;
+}
+```
+---
 # 🧩 Longest Substring Without Repeating Characters (Medium)
 
 ## 📌 Problem Statement
