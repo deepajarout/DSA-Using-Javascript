@@ -104,4 +104,48 @@ function maxSubArrayBrute(arr, k) {
 Complexity
 Time: O(n * k)
 Space: O(1)
+---
+# 🧩 Longest Substring Without Repeating Characters (Medium)
+
+## 📌 Problem Statement
+
+Given a string `s`, find the **length of the longest substring** without repeating characters.
+
+---
+
+## 🧠 Approach: Sliding Window (Optimal)
+
+### 💡 Idea
+
+- Use a **sliding window (left → right)**
+- Maintain a **Set / Map** to track characters
+- If duplicate found → **shrink window**
+- Track **maximum length**
+
+---
+
+## 🚀 Solution 1: Using Set
+
+### 💻 Code
+
+```javascript
+function longestSubstring(s) {
+  let set = new Set();
+  let left = 0;
+  let maxLength = 0;
+
+  for (let right = 0; right < s.length; right++) {
+
+    // Remove duplicates
+    while (set.has(s[right])) {
+      set.delete(s[left]);
+      left++;
+    }
+
+    set.add(s[right]);
+    maxLength = Math.max(maxLength, right - left + 1);
+  }
+
+  return maxLength;
+}
 
