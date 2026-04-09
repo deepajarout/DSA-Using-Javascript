@@ -148,4 +148,55 @@ function longestSubstring(s) {
 
   return maxLength;
 }
+```
+
+# 🧩 Longest Substring Without Repeating Characters (Using Map)
+
+## 📌 Problem Statement
+
+Given a string `s`, find the **length of the longest substring without repeating characters**.
+
+---
+
+## 🧠 Approach: Sliding Window + HashMap
+
+### 💡 Idea
+
+- Use a **sliding window (left → right)**
+- Use a **Map** to store:
+  - Character → Last seen index
+- If duplicate found:
+  - Move `left` pointer directly to **last index + 1**
+- Update max length
+
+---
+
+## 🚀 Optimized Solution (Map)
+
+### 💻 Code
+
+```javascript
+function longestSubstring(s) {
+  let map = new Map(); // char -> last index
+  let left = 0;
+  let maxLength = 0;
+
+  for (let right = 0; right < s.length; right++) {
+
+    // If character already seen
+    if (map.has(s[right])) {
+      // Move left pointer
+      left = Math.max(map.get(s[right]) + 1, left);
+    }
+
+    // Update last seen index
+    map.set(s[right], right);
+
+    // Calculate max length
+    maxLength = Math.max(maxLength, right - left + 1);
+  }
+
+  return maxLength;
+}
+```
 
