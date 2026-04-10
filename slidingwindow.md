@@ -232,4 +232,75 @@ function longestSubstring(s) {
   return maxLength;
 }
 ```
+---
+# 🌟 Longest Substring with At Most K Distinct Characters (Detailed Code)
 
+---
+
+## 📌 Problem Statement
+
+Given a string `s` and an integer `k`, return the **length of the longest substring** that contains **at most `k` distinct characters**.
+
+---
+
+## 🧠 Approach: Sliding Window
+
+We maintain a window `[left, right]` and ensure:
+👉 At any time → **window contains ≤ k distinct characters**
+
+---
+
+## ✅ Fully Explained Code
+
+```javascript
+function longestKDistinct(s, k) {
+
+  // Map to store frequency of characters in current window
+  let map = new Map();
+
+  // Left pointer (start of window)
+  let left = 0;
+
+  // Store maximum length found
+  let maxLen = 0;
+
+  // Right pointer expands the window
+  for (let right = 0; right < s.length; right++) {
+
+    let char = s[right]; // current character
+
+    // Step 1: Add current character to map
+    // If already exists → increase count
+    // Else → initialize with 1
+    map.set(char, (map.get(char) || 0) + 1);
+
+    // Step 2: Check if window is invalid
+    // Invalid condition → more than k distinct characters
+    while (map.size > k) {
+
+      // Character at left pointer
+      let leftChar = s[left];
+
+      // Reduce its frequency
+      map.set(leftChar, map.get(leftChar) - 1);
+
+      // If frequency becomes 0 → remove from map
+      if (map.get(leftChar) === 0) {
+        map.delete(leftChar);
+      }
+
+      // Move left pointer to shrink window
+      left++;
+    }
+
+    // Step 3: Calculate current valid window size
+    let windowSize = right - left + 1;
+
+    // Step 4: Update maximum length
+    maxLen = Math.max(maxLen, windowSize);
+  }
+
+  // Return final result
+  return maxLen;
+}
+```
