@@ -304,3 +304,93 @@ function longestKDistinct(s, k) {
   return maxLen;
 }
 ```
+---
+
+---
+
+## 🧠 Intuition
+
+We need to find the **longest substring** with **at most `k` distinct characters**.
+
+- Expand the window to include more characters
+- If the number of distinct characters exceeds `k`, shrink the window
+- Track the maximum valid window size
+
+---
+
+## 🚀 Approach: Sliding Window + HashMap
+
+We use:
+- Two pointers: `left` and `right`
+- A `Map` to store character frequency
+
+---
+
+## 🔄 Algorithm Steps
+
+1. Initialize:
+   - `left = 0`
+   - `maxLength = 0`
+   - `map = new Map()`
+
+2. Iterate with `right` pointer:
+   - Add character to map
+   - If `map.size > k`:
+     - Shrink window from left
+     - Decrease frequency
+     - Remove character if frequency becomes 0
+
+3. Update `maxLength`
+
+4. Return result
+
+---
+
+## 🪜 Dry Run
+
+Input: `s = "eceba"`, `k = 2`
+
+| Step | Window | Map | Action | Max |
+|------|--------|-----|--------|-----|
+| e    | e      | {e:1} | expand | 1 |
+| c    | ec     | {e:1,c:1} | expand | 2 |
+| e    | ece    | {e:2,c:1} | expand | 3 |
+| b    | eceb   | {e:2,c:1,b:1} | shrink | 3 |
+| a    | ba     | {b:1,a:1} | shrink | 3 |
+
+---
+
+## ✅ JavaScript Implementation
+
+```javascript
+function longestSubstringKDistinct(s, k) {
+  let map = new Map();
+  let left = 0;
+  let maxLength = 0;
+
+  for (let right = 0; right < s.length; right++) {
+    let char = s[right];
+
+    // Add character to map
+    map.set(char, (map.get(char) || 0) + 1);
+
+    // Shrink window if condition breaks
+    while (map.size > k) {
+      let leftChar = s[left];
+      map.set(leftChar, map.get(leftChar) - 1);
+
+      if (map.get(leftChar) === 0) {
+        map.delete(leftChar);
+      }
+
+      left++;
+    }
+
+    // Update max length
+    maxLength = Math.max(maxLength, right - left + 1);
+  }
+
+  return maxLength;
+}
+```
+
