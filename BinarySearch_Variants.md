@@ -248,3 +248,30 @@ function solve() {
 * Master boundary conditions
 
 ---
+
+```javascript
+function searchMatrix(matrix, target) {
+  if (!matrix.length || !matrix[0].length) return false;
+
+  let rows = matrix.length;
+  let cols = matrix[0].length;
+
+  let low = 0;
+  let high = rows * cols - 1;
+
+  while (low <= high) {
+    let mid = Math.floor((low + high) / 2);
+
+    let row = Math.floor(mid / cols);
+    let col = mid % cols;
+
+    let value = matrix[row][col];
+
+    if (value === target) return true;
+    else if (value < target) low = mid + 1;
+    else high = mid - 1;
+  }
+
+  return false;
+}
+```
