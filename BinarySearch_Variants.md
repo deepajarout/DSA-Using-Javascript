@@ -275,3 +275,22 @@ function searchMatrix(matrix, target) {
   return false;
 }
 ```
+```javascript
+function searchMatrix(matrix, target) {
+  let rows = matrix.length;
+  let cols = matrix[0].length;
+
+  let row = 0;
+  let col = cols - 1;
+
+  while (row < rows && col >= 0) {
+    let value = matrix[row][col];
+
+    if (value === target) return true;
+    else if (value > target) col--;   // move left
+    else row++;                       // move down
+  }
+
+  return false;
+}
+```
